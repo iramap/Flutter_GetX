@@ -17,6 +17,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var mainController = Get.put(MainController());
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Home"),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +75,9 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Get.snackbar("Flutter GetX App", "This is GetX Snackbar",
-                    backgroundColor: Colors.cyan);
+                    backgroundColor: Colors.cyan,
+                    margin: const EdgeInsets.all(15),
+                    snackPosition: SnackPosition.BOTTOM);
               },
               child: "Show Snackbar".text.semiBold.make(),
             ),
@@ -80,8 +85,12 @@ class HomePage extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 Get.defaultDialog(
-                    title: "Flutter GetX App",
-                    content: const Text("This is GetX Dialog box"));
+                  title: "Flutter GetX App",
+                  content: const Text("This is GetX Dialog box"),
+                  onCancel: () {
+                    Get.back();
+                  },
+                );
               },
               child: "Show Dialog Box".text.semiBold.make(),
             ),

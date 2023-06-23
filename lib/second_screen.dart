@@ -9,7 +9,7 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MainController mainController = Get.find();
-    // var mainControler = Get.find<MainControler>(); // another way to find already initialized controller.
+    // var mainController = Get.find<MainControler>(); // another way to find already initialized controller.
     return Scaffold(
       appBar: AppBar(
         title: const Text("Second Screen"),
