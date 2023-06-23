@@ -1,11 +1,17 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:flutter_getx/controllers/main_controller.dart';
-import 'package:flutter_getx/second_screen.dart';
 import 'package:get/get.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:flutter_getx/controllers/main_controller.dart';
+import 'package:flutter_getx/second_screen.dart';
+
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  HomePage({
+    Key? key,
+  }) : super(key: key);
+
+  bool isDarkTheme = true;
 
   @override
   Widget build(BuildContext context) {
@@ -52,16 +58,32 @@ class HomePage extends StatelessWidget {
             20.heightBox,
             ElevatedButton(
               onPressed: () {
-                Get.changeTheme(ThemeData.dark());
+                if (isDarkTheme) {
+                  Get.changeTheme(ThemeData.dark());
+                  isDarkTheme = false;
+                } else {
+                  Get.changeTheme(ThemeData.light());
+                  isDarkTheme = true;
+                }
               },
-              child: "Dark Theme".text.semiBold.make(),
+              child: "Change Theme".text.semiBold.make(),
             ),
-            20.heightBox,
+            10.heightBox,
             ElevatedButton(
               onPressed: () {
-                Get.changeTheme(ThemeData.light());
+                Get.snackbar("Flutter GetX App", "This is GetX Snackbar",
+                    backgroundColor: Colors.cyan);
               },
-              child: "Light Theme".text.semiBold.make(),
+              child: "Show Snackbar".text.semiBold.make(),
+            ),
+            10.heightBox,
+            ElevatedButton(
+              onPressed: () {
+                Get.defaultDialog(
+                    title: "Flutter GetX App",
+                    content: const Text("This is GetX Dialog box"));
+              },
+              child: "Show Dialog Box".text.semiBold.make(),
             ),
           ],
         ),
